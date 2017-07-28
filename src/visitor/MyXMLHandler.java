@@ -1,4 +1,3 @@
-package visitor;
 import org.xml.sax.Attributes;
 
 import org.xml.sax.SAXException;
@@ -7,17 +6,16 @@ import org.xml.sax.helpers.DefaultHandler;
 
 
 public class MyXMLHandler extends DefaultHandler{
-    int compteur=0;
+   public int compteur=0;
    //Nous nous servirons de cette variable plus tard
 
    private String node = null;
+  
 
 
    //début du parsing
 
    public void startDocument() throws SAXException {
-
-      System.out.println("Début du parsing");
 
    }
 
@@ -82,12 +80,14 @@ public class MyXMLHandler extends DefaultHandler{
    }
    
    public void characters(char[] ch, int start, int end) throws SAXException {
-	   if (node.equals("application-class") && node.equals("/r/n")==false) {
-       System.out.println( new String(ch, start, end));
-       if(new String(ch, start, end).trim()!="/r/n"){
-       compteur+=1;
-       System.out.println(compteur);
-       }
+	   
+	   
+	   if (node.equals("application-class")) {
+	   compteur+=1;
+       System.out.println("Nom de la Xpage n�" + compteur + ": "+ new String(ch, start, end));
+       node="";
+     //  System.out.println("Nombre de Xpages : " + compteur);
+       
       
        
 	   }
